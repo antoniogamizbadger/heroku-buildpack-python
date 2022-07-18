@@ -202,4 +202,9 @@ fi
 /app/.heroku/python/bin/python "${PIP_WHEEL}/pip" install --quiet --disable-pip-version-check --no-cache \
   "${PIP_WHEEL}" "setuptools==${SETUPTOOLS_VERSION}" "wheel==${WHEEL_VERSION}"
 
+TEMP_DEB="$(mktemp)" &&
+wget -O "$TEMP_DEB" 'http://ports.ubuntu.com/pool/main/s/six/python3-six_1.14.0-2_all.deb' &&
+sudo dpkg -i "$TEMP_DEB"
+rm -f "$TEMP_DEB"
+
 hash -r
